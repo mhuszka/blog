@@ -3,41 +3,38 @@
 $error = array();
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
     if (empty($_POST["titre"])) {
 
-        $error['titre'] = true; //vide
+        $error['titre'] = false; 
 
     } else {
 
-        $error['titre'] = false; //correctement rempli
+        $error['titre'] = true;
 
     }
 
 
     if (empty($_POST["contenu"])) {
 
-        $error['contenu'] = true; // vide
+        $error['contenu'] = false;
 
     } else {
 
-        $error['contenu'] = false; //correctement rempli
+        $error['contenu'] = true;
 
     }
 
 
     if(empty($_POST['auteur'])){
 
-        $error['auteur'] = true; //vide
+        $error['auteur'] = false;
 
     }else{
 
-        $error['auteur'] = false; //correctement rempli
+        $error['auteur'] = true; 
     }
-/*
-    if(!in_array(true, $error)){
+
+    if ($error['titre'] == true && $error['contenu'] == true && $error['auteur'] == true){
         $servername = "localhost";
         $username = "bmelissa";
         $password = "bmelissa@2017";
@@ -49,16 +46,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // prepare sql and bind parameters
-            $stmt = $conn->prepare("INSERT INTO contact (titre, contenu, auteur)
+            $stmt = $conn->prepare("INSERT INTO blog (titre, contenu, auteur)
             VALUES (:titre, :contenu, :auteur)");
-            $stmt->bindParam(':titre', $name);
-            $stmt->bindParam(':contenu', $message);
-            $stmt->bindParam(':auteur', $category);
+            $stmt->bindParam(':titre', $titre);
+            $stmt->bindParam(':contenu', $contenu);
+            $stmt->bindParam(':auteur', $auteur);
 
             // insert a row
-            $name = $_GET["titre"];
-            $message = $_GET["contenu"];
-            $category = $_GET["auteur"];
+            $titre = $_POST["titre"];
+            $contenu = $_POST["contenu"];
+            $auteur = $_POST["auteur"];
 
             $stmt->execute();
 
@@ -70,12 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $conn = null;
 
-    }else{
-        $error['sendEmail'] = true;
-    }*/
-}
+    }
+echo 'coucou';
 
-print_r($error);
-?>  
+?>
 
     

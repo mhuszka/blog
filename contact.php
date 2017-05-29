@@ -114,7 +114,7 @@
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Auteur</label>
-                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="name" required data-validation-required-message="Please enter your name.">
+                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="auteur" required data-validation-required-message="Please enter your name.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
