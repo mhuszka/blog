@@ -2,7 +2,7 @@
 
 $(function() {
 
-    $("#contactForm input,#contactForm textarea").jqBootstrapValidation({
+    $("#contactForm input").jqBootstrapValidation({
         preventSubmit: true,
 
         submitSuccess: function($form, event) {
@@ -10,11 +10,11 @@ $(function() {
             // get values from FORM
             var name = $("input#name").val();
             var titre = $("input#titre").val();
-            var message = $("textarea#contenu").val();
+            var message = $("input#contenu").val();
 
             
             $.ajax({
-                url: "./contact.php",
+                url: "poster.php",
                 type: "POST",
                 data: {
                     titre: titre,

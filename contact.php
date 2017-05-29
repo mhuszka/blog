@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
     <head>
 
@@ -9,7 +10,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Clean Blog - Contact</title>
+        <title>Urban Jungle Blog</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +20,7 @@
 
         <!-- Custom Fonts -->
         <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
         <link href="https://fonts.googleapis.com/css?family=Kumar+One|Kumar+One+Outline|Poppins" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,26 +43,26 @@
                         <span class="sr-only">Toggle navigation</span>
                         Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="about.html">About</a>
-                        </li>
-                        <li>
-                            <a href="post.html">Sample Post</a>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="index.php">Home</a>
+                            </li>
+                            <li>
+                                <a href="about.php">About</a>
+                            </li>
+                            <li>
+                                <a href="post.php">Articles</a>
+                            </li>
+                            <li>
+                                <a href="contact.php">Contact</a>
+                            </li>
+
+                        </ul>
+                    </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
@@ -89,11 +91,11 @@
                     <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
                     <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
                     <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
@@ -161,7 +163,7 @@
                                 </a>
                             </li>
                         </ul>
-                        <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+
                     </div>
                 </div>
             </div>
@@ -179,86 +181,7 @@
 
         <!-- Theme JavaScript -->
         <script src="js/clean-blog.min.js"></script>
-        
-        <?php
 
-$error = array();
-
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-
-    if (empty($_POST["titre"])) {
-
-        $error['titre'] = true; //vide
-
-    } else {
-
-        $error['titre'] = false; //correctement rempli
-
-    }
-
-
-    if (empty($_POST["contenu"])) {
-
-        $error['contenu'] = true; // vide
-
-    } else {
-
-        $error['contenu'] = false; //correctement rempli
-
-    }
-
-
-    if(empty($_POST['auteur'])){
-
-        $error['auteur'] = true; //vide
-
-    }else{
-
-        $error['auteur'] = false; //correctement rempli
-    }
-/*
-    if(!in_array(true, $error)){
-        $servername = "localhost";
-        $username = "bmelissa";
-        $password = "bmelissa@2017";
-        $dbname = "bmelissa";
-
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            // prepare sql and bind parameters
-            $stmt = $conn->prepare("INSERT INTO contact (titre, contenu, auteur)
-            VALUES (:titre, :contenu, :auteur)");
-            $stmt->bindParam(':titre', $name);
-            $stmt->bindParam(':contenu', $message);
-            $stmt->bindParam(':auteur', $category);
-
-            // insert a row
-            $name = $_GET["titre"];
-            $message = $_GET["contenu"];
-            $category = $_GET["auteur"];
-
-            $stmt->execute();
-
-            $error['bdd'] =  "New records created successfully";
-        }
-        catch(PDOException $e)
-        {
-            $error['bdd'] = "Error: " . $e->getMessage();
-        }
-        $conn = null;
-
-    }else{
-        $error['sendEmail'] = true;
-    }*/
-}
-
-print_r($error);
-?>  
 
     </body>
 
