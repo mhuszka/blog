@@ -3,10 +3,10 @@
 $error = array();
 
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    if (empty($_GET["titre"])) {
+    if (empty($_POST["titre"])) {
 
         $error['titre'] = true; //vide
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
 
-    if (empty($_GET["contenu"])) {
+    if (empty($_POST["contenu"])) {
 
         $error['contenu'] = true; // vide
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
 
-    if(empty($_GET['auteur'])){
+    if(empty($_POST['auteur'])){
 
         $error['auteur'] = true; //vide
 
@@ -36,17 +36,46 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
         $error['auteur'] = false; //correctement rempli
     }
-    
+/*
     if(!in_array(true, $error)){
-        mail('reginaphalange088@laposte.net', 'Mail venant du site', $_GET["message"], 'From: "'.$_GET["nom"].'"<'.$_GET["mail"].'>');
-        
-        $error['sendEmail'] = false;
-        
+        $servername = "localhost";
+        $username = "bmelissa";
+        $password = "bmelissa@2017";
+        $dbname = "bmelissa";
+
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // prepare sql and bind parameters
+            $stmt = $conn->prepare("INSERT INTO contact (titre, contenu, auteur)
+            VALUES (:titre, :contenu, :auteur)");
+            $stmt->bindParam(':titre', $name);
+            $stmt->bindParam(':contenu', $message);
+            $stmt->bindParam(':auteur', $category);
+
+            // insert a row
+            $name = $_GET["titre"];
+            $message = $_GET["contenu"];
+            $category = $_GET["auteur"];
+
+            $stmt->execute();
+
+            $error['bdd'] =  "New records created successfully";
+        }
+        catch(PDOException $e)
+        {
+            $error['bdd'] = "Error: " . $e->getMessage();
+        }
+        $conn = null;
+
     }else{
         $error['sendEmail'] = true;
-    }
+    }*/
 }
 
-echo json_encode($error); 
+print_r($error);
+?>  
 
-?>    
+    

@@ -3,10 +3,10 @@
 $error = array();
 
 
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
-    if (empty($_GET["titre"])) {
+    if (empty($_POST["titre"])) {
 
         $error['titre'] = true; //vide
 
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
 
-    if (empty($_GET["contenu"])) {
+    if (empty($_POST["contenu"])) {
 
         $error['contenu'] = true; // vide
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 
 
-    if(empty($_GET['auteur'])){
+    if(empty($_POST['auteur'])){
 
         $error['auteur'] = true; //vide
 

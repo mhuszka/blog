@@ -68,14 +68,13 @@
 
         <!-- Page Header -->
         <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('img/contact-bg.jpg')">
+        <header class="intro-header" style="background-image: url('img/plants.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <div class="page-heading">
                             <h1>Contact Me</h1>
                             <hr class="small">
-                            <span class="subheading">Have questions? I have answers (maybe).</span>
                         </div>
                     </div>
                 </div>
@@ -86,29 +85,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <p>Want to get in touch with me? Fill out the form below to send me a message and I will try to get back to you within 24 hours!</p>
+                    <p>Poster un article</p>
                     <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
                     <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
                     <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+                    
+                    
+                    
+                    
+                    
                     <form name="sentMessage" id="contactForm" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
-                                <input type="text" class="form-control" placeholder="title" id="title" required data-validation-required-message="Please enter your title.">
+                                <input type="text" class="form-control" placeholder="titre" name="titre" id="titre" required data-validation-required-message="Please enter your title.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Contenu</label>
-                                <input type="text" class="form-control" placeholder="contained" id="contained" required data-validation-required-message="Please fill the article.">
+                                <input type="text" class="form-control" placeholder="contenu" name="contenu" id="contenu" required data-validation-required-message="Please fill the article.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Auteur</label>
-                                <input type="name" class="form-control" placeholder="name" id="name" required data-validation-required-message="Please enter your name.">
+                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="name" required data-validation-required-message="Please enter your name.">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -175,6 +179,86 @@
 
         <!-- Theme JavaScript -->
         <script src="js/clean-blog.min.js"></script>
+        
+        <?php
+
+$error = array();
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+
+    if (empty($_POST["titre"])) {
+
+        $error['titre'] = true; //vide
+
+    } else {
+
+        $error['titre'] = false; //correctement rempli
+
+    }
+
+
+    if (empty($_POST["contenu"])) {
+
+        $error['contenu'] = true; // vide
+
+    } else {
+
+        $error['contenu'] = false; //correctement rempli
+
+    }
+
+
+    if(empty($_POST['auteur'])){
+
+        $error['auteur'] = true; //vide
+
+    }else{
+
+        $error['auteur'] = false; //correctement rempli
+    }
+/*
+    if(!in_array(true, $error)){
+        $servername = "localhost";
+        $username = "bmelissa";
+        $password = "bmelissa@2017";
+        $dbname = "bmelissa";
+
+        try {
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // prepare sql and bind parameters
+            $stmt = $conn->prepare("INSERT INTO contact (titre, contenu, auteur)
+            VALUES (:titre, :contenu, :auteur)");
+            $stmt->bindParam(':titre', $name);
+            $stmt->bindParam(':contenu', $message);
+            $stmt->bindParam(':auteur', $category);
+
+            // insert a row
+            $name = $_GET["titre"];
+            $message = $_GET["contenu"];
+            $category = $_GET["auteur"];
+
+            $stmt->execute();
+
+            $error['bdd'] =  "New records created successfully";
+        }
+        catch(PDOException $e)
+        {
+            $error['bdd'] = "Error: " . $e->getMessage();
+        }
+        $conn = null;
+
+    }else{
+        $error['sendEmail'] = true;
+    }*/
+}
+
+print_r($error);
+?>  
 
     </body>
 
