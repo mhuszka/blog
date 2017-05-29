@@ -74,7 +74,7 @@ catch(PDOException $e)
                                 <a href="about.php">About</a>
                             </li>
                             <li>
-                                <a href="post.php">Articles</a>
+                                <a href="post/post.php">Articles</a>
                             </li>
                             <li>
                                 <a href="contact.php">Contact</a>
