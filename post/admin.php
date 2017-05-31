@@ -88,11 +88,7 @@
                     <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
                     <!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
 
-
-
-
-
-                    <form name="sentMessage" id="contactForm" enctype="multipart/form-data" novalidate>
+                    <form name="sentMessage" id="contactForm" runat="server" enctype="multipart/form-data" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
@@ -111,7 +107,7 @@
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Image(s)</label>
                                 <input type="file" name="image" id="image" accept="image/*">
-                                <!--<input type="hidden" name="MAX_FILE_SIZE" value="100000">-->
+                                <input type="hidden" name="MAX_FILE_SIZE" value="2097152">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>

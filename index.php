@@ -145,11 +145,11 @@ catch(PDOException $e)
 
                     foreach($result as $article){
 
-                        echo  "<div class='post-preview'><a href='post/post.php?id=".$article['id']."'><h1 class='post-title'>";
+                        echo "<div class='post-preview'><a href='post/post.php?id=".$article['id']."'><h1 class='post-title'>";
                         echo $article['titre'];
                         echo "</h1></a>";
 
-                        echo  "<p class='post-subtitle'>";
+                        echo "<p class='post-subtitle'>";
                         echo $article['contenu'];
                         echo "</p>";
 

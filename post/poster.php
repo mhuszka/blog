@@ -23,15 +23,6 @@ var_dump($_FILES);
         var_dump($error);
     }
 }*/
-
-if ($_FILES["image"]["error"]==0){
-    $tmp_name = $_FILES["image"]["tmp_name"];
-    $name = $_FILES["image"]["name"];
-    move_uploaded_file($tmp_name,'./post/img_blog/'.$name);
-    
-
-}
-
 if (empty($_POST["titre"])) {
 
     $error['titre'] = false; 
@@ -39,27 +30,22 @@ if (empty($_POST["titre"])) {
 } else {
 
     $error['titre'] = true;
-
 }
-
 
 if (empty($_POST["contenu"])) {
 
     $error['contenu'] = false;
-
 } else {
 
     $error['contenu'] = true;
-
 }
 
 if(empty($_POST['auteur'])){
 
-    $error['auteur'] = false;
-
+    $error['auteur'] = false;  
 }else{
 
-    $error['auteur'] = true; 
+        $error['auteur'] = true; 
 }
 
 
@@ -74,9 +60,16 @@ if ($error['titre'] == true && $error['contenu'] == true && $error['auteur'] == 
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+        // empêcher de charger les mêmes images
+        // on leur crée un ID unique avec l'Id de l'article
+        $stmt = $conn->prepare("SELECT MAX(id) as id FROM blog");
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $idFuturPost =$result ["id"]+1;
+
         // prepare sql and bind parameters
         $stmt = $conn->prepare("INSERT INTO blog (titre, contenu, image, auteur)
-            VALUES (:titre, :contenu, :image, :auteur)");
+        VALUES (:titre, :contenu, :image, :auteur)");
         $stmt->bindParam(':titre', $titre);
         $stmt->bindParam(':contenu', $contenu);
         $stmt->bindParam(':image', $image);
@@ -85,12 +78,18 @@ if ($error['titre'] == true && $error['contenu'] == true && $error['auteur'] == 
         // insert a row
         $titre = $_POST["titre"];
         $contenu = strip_tags(htmlspecialchars($_POST["contenu"]));
-        $image = $_FILES["image"]["tmp_name"];
+        $image = 'img_blog/'.$idFuturPost."-".$_FILES["image"]["name"];
         $auteur = $_POST["auteur"];
 
         $stmt->execute();
 
-        $error['bdd'] =  "New records created successfully";
+        $error['bdd'] = "New records created successfully";
+
+        if ($_FILES["image"]["error"]==0){
+            $tmp_name = $_FILES["image"]["tmp_name"];
+            $name = $idFuturPost."-".$_FILES["image"]["name"];
+            move_uploaded_file($tmp_name,'img_blog/'.$name);
+        }
     }
     catch(PDOException $e)
     {

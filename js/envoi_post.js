@@ -1,5 +1,4 @@
 // Contact Form Scripts
-
 $(function() {
 
     $("#contactForm input").jqBootstrapValidation({
@@ -45,7 +44,7 @@ $(function() {
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + firstName + ", it seems that my mail server is not responding. Please try again later!");
+                    $('#success > .alert-danger').append("<strong>Sorry " + auteur + ", impossible de charger l'image. Essayez plus tard !");
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
@@ -59,7 +58,6 @@ $(function() {
         $(this).tab("show");
     });
 });
-
 
 /*When clicking on Full hide fail/success boxes */
 $('#name').focus(function() {
