@@ -34,13 +34,13 @@ catch(PDOException $e)
         <title>Urban Jungle Blog</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Theme CSS -->
-        <link href="../css/clean-blog.css" rel="stylesheet">
+        <link href="css/clean-blog.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <link href="https://fonts.googleapis.com/css?family=Kumar+One|Kumar+One+Outline|Poppins" rel="stylesheet">
 
@@ -66,13 +66,13 @@ catch(PDOException $e)
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="../index.php">Home</a>
+                                <a href="index.php">Home</a>
                             </li>
                             <li>
-                                <a href="../about.php">About</a>
+                                <a href="about.php">About</a>
                             </li>
                             <li>
-                                <a href="../post/post.php">Articles</a>
+                                <a href="post.php">Articles</a>
                             </li>
                         </ul>
                     </div>
@@ -82,9 +82,8 @@ catch(PDOException $e)
             <!-- /.container -->
         </nav>
         <!-- Page Header -->
-
         <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('../img/plants.jpg')">
+        <header class="intro-header" style="background-image: url('img/plants.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -102,13 +101,11 @@ catch(PDOException $e)
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-
                     <p><?= $result[0]['contenu']; ?></p>
                     <p><?php $adr_img = $result[0]['image'];
-                        echo "<img src='".$adr_img."'>";
+                        echo "<img class='taille' src='".$adr_img."'>";
                         ?>
                     </p>
-
                 </div>
             </div>
         </div>

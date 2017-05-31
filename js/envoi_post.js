@@ -26,6 +26,7 @@ $(function() {
                 data: data,
                 cache: false,
                 success: function(data) {
+                    console.log("ola");
                     // Success message
                     $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
@@ -38,13 +39,15 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                 },
-                error: function(data) {
-                    console.log(data);
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    console.log(errorThrown);
+             
+                    console.log("helloo");
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Sorry " + auteur + ", impossible de charger l'image. Essayez plus tard !");
+                    $('#success > .alert-danger').append("<strong>Sorry " + auteur + ",  impossible de charger l'image. Essayez plus tard !");
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");

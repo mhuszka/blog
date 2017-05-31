@@ -10,8 +10,8 @@ if(!in_array($extension, $extensions)) //Si l'extension n'est pas dans le tablea
      $erreur = 'Vous devez uploader un fichier de type png, gif, jpg, jpeg, txt ou doc...';
 }*/
 
-$uploads_dir = './img_blog';
-var_dump($_FILES);
+$uploads_dir = 'img_blog';
+
 
 /*foreach ($_FILES["image"]["error"] as $key => $error) {
     if ($error == 0) {
@@ -45,7 +45,7 @@ if(empty($_POST['auteur'])){
     $error['auteur'] = false;  
 }else{
 
-        $error['auteur'] = true; 
+    $error['auteur'] = true; 
 }
 
 
@@ -88,7 +88,7 @@ if ($error['titre'] == true && $error['contenu'] == true && $error['auteur'] == 
         if ($_FILES["image"]["error"]==0){
             $tmp_name = $_FILES["image"]["tmp_name"];
             $name = $idFuturPost."-".$_FILES["image"]["name"];
-            move_uploaded_file($tmp_name,'img_blog/'.$name);
+            move_uploaded_file($tmp_name,'../img_blog/'.$name);
         }
     }
     catch(PDOException $e)
@@ -98,8 +98,9 @@ if ($error['titre'] == true && $error['contenu'] == true && $error['auteur'] == 
     $conn = null;
 }
 
-var_dump($_POST);
-echo json_encode($_FILES); 
+
+echo json_encode($error);
+
 
 ?>
 

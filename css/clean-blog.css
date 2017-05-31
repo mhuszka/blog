@@ -413,3 +413,8 @@ img::-moz-selection {
 body {
     -webkit-tap-highlight-color: #0085A1;
 }
+
+img.taille {
+    max-width: 700px;
+    max-height: auto;
+}
