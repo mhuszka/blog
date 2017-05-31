@@ -1,4 +1,41 @@
 <?php
+
+function dt($datetime, $full = false) {
+    $now = new DateTime;
+    $ago = new DateTime($datetime);
+    $diff = $now->diff($ago);
+
+    $diff->w = floor($diff->d / 7);
+    $diff->d -= $diff->w * 7;
+
+    $string = array(
+        'y' => 'année',
+        'm' => 'mois',
+        'w' => 'semaine',
+        'd' => 'jour',
+        'h' => 'heure',
+        'i' => 'minute',
+        's' => 'seconde',
+    );
+    foreach ($string as $k => &$v) {
+        
+            if ($diff->$k) {
+                if($k=="m"){
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? '' : '');
+                }else{
+                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                }
+            } else {
+                unset($string[$k]);
+            }
+        
+    }
+
+    if (!$full) $string = array_slice($string, 0, 1);
+    return $string ? "il y a ".implode(', ', $string) : 'just now';
+}  
+
+
 $servername = "localhost";
 $username = "bmelissa";
 $password = "bmelissa@2017";
@@ -6,7 +43,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=bmelissa", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT * FROM blog ORDER BY id DESC"); 
+    $stmt = $conn->prepare("SELECT * FROM blog ORDER BY id DESC LIMIT 5"); 
     $stmt->execute();
 
     // set the resulting array to associative
@@ -76,10 +113,6 @@ catch(PDOException $e)
                             <li>
                                 <a href="post/post.php">Articles</a>
                             </li>
-                            <li>
-                                <a href="contact.php">Contact</a>
-                            </li>
-
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -112,24 +145,21 @@ catch(PDOException $e)
 
                     foreach($result as $article){
 
-                        echo  "<div class='post-preview'><a href='post.html'><h2 class='post-title'>";
+                        echo  "<div class='post-preview'><a href='post/post.php?id=".$article['id']."'><h1 class='post-title'>";
                         echo $article['titre'];
-                        echo "</h2></a>";
+                        echo "</h1></a>";
 
                         echo  "<p class='post-subtitle'>";
                         echo $article['contenu'];
                         echo "</p>";
-                        
-                        echo "<p class='post-meta'>Posté par <a href='#'>";
+
+                        echo "<p class='post-meta'>Posté par ";
                         echo $article['auteur'];
                         echo "</a> Le ";
                         echo $article['date'];
                         echo "</p></div><hr/>";
-                        
                     }       
                     ?> 
-
-
                     <!-- Pager -->
                     <ul class="pager">
                         <li class="next">
@@ -187,7 +217,7 @@ catch(PDOException $e)
 
         <!-- Contact Form JavaScript -->
         <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
+        <script src="js/envoi_post.js"></script>
 
         <!-- Theme JavaScript -->
         <script src="js/clean-blog.min.js"></script>

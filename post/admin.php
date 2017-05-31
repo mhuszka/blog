@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -13,13 +12,13 @@
         <title>Urban Jungle Blog</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Theme CSS -->
-        <link href="css/clean-blog.css" rel="stylesheet">
+        <link href="../css/clean-blog.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <link href="https://fonts.googleapis.com/css?family=Kumar+One|Kumar+One+Outline|Poppins" rel="stylesheet">
 
@@ -46,23 +45,20 @@
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="index.php">Home</a>
-                            </li>
-                            <li>
-                                <a href="about.php">About</a>
-                            </li>
-                            <li>
-                                <a href="post.php">Articles</a>
-                            </li>
-                            <li>
-                                <a href="contact.php">Contact</a>
-                            </li>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="../index.php">Home</a>
+                        </li>
+                        <li>
+                            <a href="../about.php">About</a>
+                        </li>
+                        <li>
+                            <a href="post.php">Articles</a>
+                        </li>
 
-                        </ul>
-                    </div>
+                    </ul>
+                </div>
                 <!-- /.navbar-collapse -->
             </div>
             <!-- /.container -->
@@ -75,7 +71,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <div class="page-heading">
-                            <h1>Contact Me</h1>
+                            <h1>Poster un article</h1>
                             <hr class="small">
                         </div>
                     </div>
@@ -96,25 +92,33 @@
 
 
 
-                    <form name="sentMessage" id="contactForm" novalidate>
+                    <form name="sentMessage" id="contactForm" enctype="multipart/form-data" novalidate>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Titre</label>
-                                <input type="text" class="form-control" placeholder="titre" name="titre" id="titre" required data-validation-required-message="Please enter your title.">
+                                <input type="text" class="form-control" placeholder="titre" name="titre" id="titre">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Contenu</label>
-                                <input type="text" class="form-control" placeholder="contenu" name="contenu" id="contenu" required data-validation-required-message="Please fill the article.">
+                                <input type="text" class="form-control" placeholder="contenu" name="contenu" id="contenu">
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Image(s)</label>
+                                <input type="file" name="image" id="image" accept="image/*">
+                                <!--<input type="hidden" name="MAX_FILE_SIZE" value="100000">-->
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Auteur</label>
-                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="auteur" required data-validation-required-message="Please enter your name.">
+                                <input type="name" class="form-control" placeholder="auteur" name="auteur" id="auteur">
                                 <p class="help-block text-danger"></p>
                             </div>
                         </div>
@@ -170,17 +174,17 @@
         </footer>
 
         <!-- jQuery -->
-        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/jquery/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 
         <!-- Contact Form JavaScript -->
-        <script src="js/jqBootstrapValidation.js"></script>
-        <script src="js/contact_me.js"></script>
+        <script src="../js/jqBootstrapValidation.js"></script>
+        <script src="../js/envoi_post.js"></script>
 
         <!-- Theme JavaScript -->
-        <script src="js/clean-blog.min.js"></script>
+        <script src="../js/clean-blog.min.js"></script>
 
 
     </body>

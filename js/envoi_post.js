@@ -11,20 +11,24 @@ $(function() {
             var auteur = $("input#auteur").val();
             var titre = $("input#titre").val();
             var contenu = $("input#contenu").val();
+            var image = $("input#image").val();
 
-            
+            var $form = $("form");
+            var formdata = new FormData($form[0]);
+            var data = formdata;
+            console.log($form);
+
             $.ajax({
-                url: "poster.php",
+                url: "../post/poster.php",
                 type: "POST",
-                data: {
-                    titre: titre,
-                    auteur: auteur, //auteur est la clef qu'on trouve dans le fichier contact.php
-                    contenu: contenu
-                },
+                contentType: false, // obligatoire pour de l'upload
+                processData: false, // obligatoire pour de l'upload
+                dataType: 'json',
+                data: data,
                 cache: false,
                 success: function(data) {
                     // Success message
-                   $('#success').html("<div class='alert alert-success'>");
+                    $('#success').html("<div class='alert alert-success'>");
                     $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
                     $('#success > .alert-success')
@@ -35,7 +39,8 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                 },
-                error: function() {
+                error: function(data) {
+                    console.log(data);
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")

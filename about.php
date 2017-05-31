@@ -55,10 +55,7 @@
                                 <a href="about.php">About</a>
                             </li>
                             <li>
-                                <a href="post.php">Articles</a>
-                            </li>
-                            <li>
-                                <a href="contact.php">Contact</a>
+                                <a href="post/post.php">Articles</a>
                             </li>
                         </ul>
                     </div>
@@ -142,7 +139,7 @@
 
     <!-- Contact Form JavaScript -->
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="js/envoi_post.js"></script>
 
     <!-- Theme JavaScript -->
     <script src="js/clean-blog.min.js"></script>

@@ -1,3 +1,28 @@
+<?php
+$id = $_GET['id'];
+
+$servername = "localhost";
+$username = "bmelissa";
+$password = "bmelissa@2017";
+
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=bmelissa", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn->prepare("SELECT * FROM blog WHERE id=$id");
+    $stmt->execute();
+
+    // set the resulting array to associative
+    $result = $stmt->fetchAll();
+}
+catch(PDOException $e)
+{
+    echo "Connection failed: " . $e->getMessage();
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,13 +37,13 @@
         <title>Urban Jungle Blog</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Theme CSS -->
-        <link href="css/clean-blog.css" rel="stylesheet">
+        <link href="../css/clean-blog.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <link href="https://fonts.googleapis.com/css?family=Kumar+One|Kumar+One+Outline|Poppins" rel="stylesheet">
 
@@ -51,15 +76,11 @@
                                 <a href="../index.php">Home</a>
                             </li>
                             <li>
-                                <a href="about.php">About</a>
+                                <a href="../about.php">About</a>
                             </li>
                             <li>
-                                <a href="post.php">Articles</a>
+                                <a href="../post/post.php">Articles</a>
                             </li>
-                            <li>
-                                <a href="contact.php">Contact</a>
-                            </li>
-
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->
@@ -67,15 +88,17 @@
             </div>
             <!-- /.container -->
         </nav>
-        
-       <!-- Page Header -->
+
+        <!-- Page Header -->
+
         <!-- Set your background image for this header on the line below. -->
-        <header class="intro-header" style="background-image: url('img/3.jpg')">
+        <header class="intro-header" style="background-image: url('../img/plants.jpg')">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                         <div class="site-heading">
-                            <h1>Urban Jungle Blog</h1>
+                            <h1><?= $result[0]['titre']; ?></h1>
+                            <span class="meta">Posted by <a href="#"><?= $result[0]['auteur']; ?></a> on August 24, 2014</span>
                             <hr class="small">
                         </div>
                     </div>
@@ -87,9 +110,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                
-               <p>CECI EST UN NOUVEL ARTICLE</p>
-               
+
+                    <p><?= $result[0]['contenu']; ?></p>
+                    <p><?= $result[0]['image']; ?></p>
+
                 </div>
             </div>
         </div>
